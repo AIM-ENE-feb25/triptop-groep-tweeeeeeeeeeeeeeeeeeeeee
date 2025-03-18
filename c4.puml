@@ -1,0 +1,26 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title System Context diagram voor Triptop
+
+Person(reiziger, "Reiziger", "Stelt reis samen")
+Person(reisagent, "Reisagent", "Biedt tweedelijns support")
+
+System(triptop, "Triptop", "Raadpleegt reizigers")
+
+System_Ext(centrale_identity_provider, "Centrale identity provider (Google, Microsoft, AirBnb)", "Identificeert gebruikers")
+System_Ext(overnachting_provider, "Overnachting provider (Booking.com, Airbnb)", Biedt overnachtingen aan)
+System_Ext(vervoer_provider, "Vervoer provider (NS, Deutsche Bahn, KLM, Sixt, Hertz)", Biedt vervoersmiddelen aan)
+System_Ext(activiteit_provider, "Activiteit provider (GetYourGuide, Tripadvisor)", Biedt activiteiten)
+System_Ext(food_provider, "Food provider (Takeaway, Eet.nu)", Biedt opties voor voedsel)
+
+Rel(reiziger, triptop, "Plant hun reis")
+Rel(reisagent, triptop, "Geeft advies")
+
+Rel(triptop, centrale_identity_provider, "Identificeert gebruikers")
+Rel(triptop, overnachting_provider, "Boekt overnachtingen")
+Rel(triptop, vervoer_provider, "Boekt vervoer")
+Rel(triptop, activiteit_provider, "Boekt activiteiten")
+Rel(triptop, food_provider, "Regelt voedsel")
+
+@enduml
