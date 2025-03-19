@@ -1,0 +1,36 @@
+@startuml
+!include  https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+SHOW_PERSON_OUTLINE()
+
+
+Person(Reiziger, "reiziger" , "Kan reis boeken, aanpassen en annuleren")
+Person(Reisagent, "reisagent", "Helpt reizigers met het plannen van de reis")
+
+System_Boundary(c4, triptop) {
+Container(webApp, "WebApplicatie", "React", "Interface voor de reizigers")
+Container(backend, "Backend" , "Java Spring Boot", Verwerkt de logica van de applicatie)
+Container(database, "Database", "MsSql", "Opslaan van data")
+}
+
+'Api's
+System_Ext(bookingApi, "Booking-api", "Api voor boeken via booking.com")
+System_Ext(tripadvisorApi, "TripadvisorApi", "Api voor boeken van activiteiten via Tripadvisor")
+System_Ext(uberEatsApi, "UberEatsApi", "Api voor het bestellen van eten")
+System_Ext(airBnbApi,"AirbnbApi" , "Api voor het boeken via airBnb")
+System_Ext(deutscheBahnApi, "DeutscheBahnApi", "Api voor boeken van treinreis")
+System_Ext(nsApi, "NsApi", "Api voor boeken van treinreis via ns")
+'Relaties
+Rel(webApp, backend, "Stuurt data door","HTTP")
+Rel(backend, database, "Leest en schrijft")
+Rel(Reiziger, webApp, "Boekt,Annuleerd, past aan en betaald reis")
+Rel(Reisagent, webApp, "Helpt reizigers met reis plannen")
+
+Rel(backend, bookingApi, "Maakt api verzoeken naar")
+Rel(backend, uberEatsApi, "Maakt api verzoeken naar")
+Rel(backend, tripadvisorApi, "Maakt api verzoeken naar")
+Rel(backend,airBnbApi,"Maakt api verzoeken naar")
+Rel(backend, deutscheBahnApi, "Maakt api verzoeken naar")
+Rel(backend, nsApi, "Maakt api verzoeken naar")
+
+@enduml

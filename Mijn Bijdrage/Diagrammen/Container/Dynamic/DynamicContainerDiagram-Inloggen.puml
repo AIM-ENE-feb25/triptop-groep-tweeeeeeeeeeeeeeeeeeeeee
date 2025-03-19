@@ -1,0 +1,20 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
+
+SHOW_PERSON_OUTLINE()
+LAYOUT_TOP_DOWN()
+
+Person(Reiziger, "reiziger", "Plannen en boeken van een reis")
+
+System_Boundary(s1, Triptop){
+Container(webApp,"Webapplicatie","React", "De applicatie waar de klant zijn reis kan plannen")
+Container(Backend, "Backend", "Java Spring-Boot", "Voert logica uit")
+}
+
+System_Ext(Identity, "IdentityProvider", Regelt de autenticate)
+
+Rel(Reiziger, webApp, "interactie met webapplicatie")
+Rel(webApp, Backend, "Stuurt inlogGegevens door")
+Rel(Backend, Identity, "Stuurt inlogGegevens door")
+Rel(Identity,webApp, "Geeft token terug")
+@enduml
