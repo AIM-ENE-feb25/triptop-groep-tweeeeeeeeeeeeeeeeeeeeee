@@ -1,0 +1,37 @@
+@startuml "Triptop Dynamic Container Diagram"
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
+
+title Dynamic Container diagram voor Triptop - Reisplanning
+
+Person(reiziger, "Reiziger", "Stelt reis samen")
+Person(reisagent, "Reisagent", "Biedt tweedelijns support")
+
+System_Boundary(triptop_system, "Triptop") {
+  Container(frontend, "Web Application", "React", "Biedt reisplanning UI")
+  Container(backend, "Backend", "Spring Boot", "Beheert reizen")
+  Container(db, "Database", "Microsoft SQL Server", "Slaat reisplannen op")
+}
+
+System_Ext(centrale_identity_provider, "Centrale identity provider (Google, Microsoft, AirBnb)", "Identificeert gebruikers")
+System_Ext(overnachting_provider, "Overnachting provider (Booking.com, Airbnb)", Biedt overnachtingen aan)
+System_Ext(vervoer_provider, "Vervoer provider (NS, Deutsche Bahn, KLM, Sixt, Hertz)", Biedt vervoersmiddelen aan)
+System_Ext(activiteit_provider, "Activiteit provider (GetYourGuide, Tripadvisor)", Biedt activiteiten)
+System_Ext(food_provider, "Food provider (Takeaway, Eet.nu)", Biedt opties voor voedsel)
+
+Rel_D(reiziger, frontend, "Plant reis", "HTTPS")
+Rel_L(frontend, backend, "Vraagt informatie", "JSON/HTTPS")
+Rel_L(backend, db, "Slaat reisplannen op", "SQL")
+Rel_D(reiziger, frontend, "Vraagt advies", "HTTPS")
+Rel_D(reisagent, frontend, "Geeft advies", "HTTPS")
+Rel_D(reiziger, frontend, "Boekt reis", "HTTPS")
+
+
+Rel_D(backend, centrale_identity_provider, "Identificeert gebruikers", "JSON/HTTPS")
+Rel_D(backend, overnachting_provider, "Boekt overnachtingen", "JSON/HTTPS")
+Rel_D(backend, vervoer_provider, "Boekt vervoer", "JSON/HTTPS")
+Rel_D(backend, activiteit_provider, "Boekt activiteiten", "JSON/HTTPS")
+Rel_D(backend, food_provider, "Regelt voedsel", "JSON/HTTPS")
+
+@enduml
