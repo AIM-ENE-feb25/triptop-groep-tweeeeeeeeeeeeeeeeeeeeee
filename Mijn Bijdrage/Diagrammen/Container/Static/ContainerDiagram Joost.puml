@@ -1,36 +1,45 @@
 @startuml
-!include  https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
 SHOW_PERSON_OUTLINE()
-
+LAYOUT_WITH_LEGEND()
 
 Person(Reiziger, "reiziger" , "Kan reis boeken, aanpassen en annuleren")
 Person(Reisagent, "reisagent", "Helpt reizigers met het plannen van de reis")
 
 System_Boundary(c4, triptop) {
-Container(webApp, "WebApplicatie", "React", "Interface voor de reizigers")
+Container(webApp, "WebApplicatie", "React", "Interface voor de reizigers en reisagenten")
 Container(backend, "Backend" , "Java Spring Boot", Verwerkt de logica van de applicatie)
-Container(database, "Database", "MsSql", "Opslaan van data")
+Container(database, "Database", "Microsoft Sql Server", "Opslaan van data")
 }
 
 'Api's
-System_Ext(bookingApi, "Booking-api", "Api voor boeken via booking.com")
-System_Ext(tripadvisorApi, "TripadvisorApi", "Api voor boeken van activiteiten via Tripadvisor")
-System_Ext(uberEatsApi, "UberEatsApi", "Api voor het bestellen van eten")
-System_Ext(airBnbApi,"AirbnbApi" , "Api voor het boeken via airBnb")
-System_Ext(deutscheBahnApi, "DeutscheBahnApi", "Api voor boeken van treinreis")
-System_Ext(nsApi, "NsApi", "Api voor boeken van treinreis via ns")
+System_Ext(identity, "IdentityProfider(Google,Microsoft, AirBnb)","Geeft Tokens voor gebruikers en geeft deze terug")
+System_Ext(accomodatie, "Accomodatie(Booking.com, AirBnb)" , "Laat Beschikbare accomodatie mogelijkheden zien")
+System_Ext(excurtie, "ExcursieDiensten(Tripadvisor, GetYourGuide)", "Api voor boeken van activiteiten via Tripadvisor")
+System_Ext(transport, "Transportdiensten(Ns, Sixt,Klm,Hertz, Deutsche Bahn)",Api voor boeken van transport)
+System_Ext(maps, "Mapapi(GoogleMaps Api)","Toont routes")
+System_Ext(food,"Eetdiensten, (Ubereats, ForkTheSpoon)", Laat beschikbare restaurants zien)
+
+Lay_L(backend, database)
 'Relaties
+
+Rel(backend, identity, "Doet Authenticatie", "HTTP")
+Rel_L(identity, webApp,"Geeft token terug", "HTTP")
 Rel(webApp, backend, "Stuurt data door","HTTP")
 Rel(backend, database, "Leest en schrijft")
 Rel(Reiziger, webApp, "Boekt,Annuleerd, past aan en betaald reis")
 Rel(Reisagent, webApp, "Helpt reizigers met reis plannen")
 
-Rel(backend, bookingApi, "Maakt api verzoeken naar")
-Rel(backend, uberEatsApi, "Maakt api verzoeken naar")
-Rel(backend, tripadvisorApi, "Maakt api verzoeken naar")
-Rel(backend,airBnbApi,"Maakt api verzoeken naar")
-Rel(backend, deutscheBahnApi, "Maakt api verzoeken naar")
-Rel(backend, nsApi, "Maakt api verzoeken naar")
+Rel(backend, accomodatie, "Vraagt data op met locatie", "HTTP")
+
+
+Rel(backend, food,"Vraagt data op met locatie", "HTTP")
+
+Rel(backend, excurtie, "Vraagt data op met locatie", "HTTP")
+
+Rel(backend, transport,"Vraagt data op met begin- en eindpunt", "HTTP")
+
+Rel(backend,maps, "Vraagt data op met locaties", "HTTP")
 
 @enduml
