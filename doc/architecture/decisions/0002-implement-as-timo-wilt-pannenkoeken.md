@@ -16,9 +16,9 @@ We need a database for the Triptop planning application.
 |----------|----------------|---------------------|-------|
 | Scalability | + | 0 | + |
 | Learnability | 0 | ++ | 0 |
-| Price | ? | ? | ? |
 
-We decided on Microsoft SQL Server
+
+Based on this criteria we decided on Microsoft SQL Server
 
 ## Consequences
 
