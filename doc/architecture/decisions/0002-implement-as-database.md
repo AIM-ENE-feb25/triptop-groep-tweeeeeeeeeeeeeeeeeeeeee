@@ -8,12 +8,20 @@ Accepted
 
 ## Context
 
-The issue motivating this decision, and any context that influences or constrains the decision.
+We need a database for the Triptop planning application. We expect it to handle 10.000 queries per minute.
 
 ## Decision
 
-The change that we're proposing or have agreed to implement.
+| Database | Redis (on disk) | Microsoft SQL Server | Neo4J |
+|----------|----------------|---------------------|-------|
+| Scalability | + | 0 | + |
+| Learnability | 0 | ++ | 0 |
+| Performance | + | ++ | 0 |
+| Price | + | -- | - |
+
+We decided on Microsoft SQL Server. We took into account that the development team has preexisting knowledge of Microsoft SQL Server, thus saving a significant amount of work by choosing it, which makes it very attractive as the development is under tight time constraints
 
 ## Consequences
 
-What becomes easier or more difficult to do and any risks introduced by the change that will need to be mitigated.
+We must use the 'Microsoft SQL Server' SQL language.
+Integration with other Microsoft technologies and tools will be simplified.
