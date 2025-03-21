@@ -1,6 +1,7 @@
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
 
+title Dynamic Container diagram voor Triptop - Inloggen
 SHOW_PERSON_OUTLINE()
 LAYOUT_TOP_DOWN()
 
