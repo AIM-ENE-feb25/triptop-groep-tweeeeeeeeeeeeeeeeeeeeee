@@ -4,7 +4,7 @@
 SHOW_PERSON_OUTLINE()
 LAYOUT_TOP_DOWN()
 
-Person(Reiziger, "reiziger", "Plannen en boeken van een reis")
+Person(Reiziger, "Reiziger", "Plannen en boeken van een reis")
 
 System_Boundary(s1, Triptop){
 Container(webApp,"Webapplicatie","React", "De applicatie waar de klant zijn reis kan plannen")
