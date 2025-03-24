@@ -1,0 +1,19 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Component(tep, "TravelExpensePro")
+
+Component(emc, "ExpanseManagementController")
+Component(ec, "ExpenseController")
+
+Component(er, "ExpenseRepository")
+Component(ur, "UserRepository")
+Component(as, "AuthenticationService")
+
+Rel(emc, tep, "")
+Rel(ec, tep, "")
+
+Rel(tep, er, "")
+Rel(tep,ur, "")
+Rel(tep, as, "")
+@enduml
