@@ -11,6 +11,7 @@ Dit software guidebook geeft een overzicht van de Triptop-applicatie. Het bevat 
 
 > [!IMPORTANT]
 > Werk zelf dit hoofdstuk uit met context diagrammen en een beschrijving van de context van de software.
+>![Context diagram](..\c4 context diagram.svg)
 
 Toelichting op de context van de software inclusief System Context Diagram:
 * Functionaliteit
@@ -82,6 +83,13 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 > [!IMPORTANT]
 > Voeg toe: Container Diagram plus een Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
 
+![Static Container Diagram](../Static_Container_diagram.svg)
+
+![Dynamic Container Diagram](../Dynamic_Container_Diagram.svg)
+
+![Dynamic Container Diagram](../Dynamic_Container_Diagram_Inloggen.svg)
+
+
 ###     7.2. Components
 
 > [!IMPORTANT]
@@ -97,36 +105,37 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 > [!IMPORTANT]
 > Voeg toe: 3 tot 5 ADR's die beslissingen beschrijven die zijn genomen tijdens het ontwerpen en bouwen van de software.
 
-### 8.1. ADR-001 TITLE
+### 8.1. ADR-001 Database
 
 > [!TIP]
 > These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration". The whole ADR should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
 
-#### Context 
+Date: 2025-03-21
 
-> [!TIP]
-> This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts about the problem we're facing and points out factors to take into account or to weigh when making the final decision.
+## Status
 
-#### Considered Options
+Accepted
 
-> [!TIP]
-> This section describes the options that were considered, and gives some indication as to why the chosen option was selected.
+## Context
 
-#### Decision
+We need a database for the Triptop planning application. We expect it to handle 10.000 queries per minute.
 
-> [!TIP]
-> This section describes our response to the forces/problem. It is stated in full sentences, with active voice. "We will …"
+## Decision
 
-#### Status 
+| Database           | Redis (on disk) | Microsoft SQL Server | Neo4J |
+|--------------------|----------------|----------------------|------|
+| Scalability        | +              | 0                    | +    |
+| Learnability       | 0              | ++                   | 0    |
+| Performance        | +              | ++                   | 0    |
+| Price              | +              | --                   | -    |
+| Communitiy Support | 0              | ++                   | 0    |
 
-> [!TIP]
-> A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
+We decided on Microsoft SQL Server. We took into account that the development team has preexisting knowledge of Microsoft SQL Server, thus saving a significant amount of work by choosing it, which makes it very attractive as the development is under tight time constraints
 
-#### Consequences 
+## Consequences
 
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
-
+We must use the 'Microsoft SQL Server' SQL language.
+Integration with other Microsoft technologies and tools will be simplified.
 ### 8.2. ADR-002 TITLE
 
 > [!TIP]

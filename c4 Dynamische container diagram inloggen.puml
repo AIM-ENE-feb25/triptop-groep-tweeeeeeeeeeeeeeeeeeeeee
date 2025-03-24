@@ -9,15 +9,12 @@ Person(Reiziger, "Reiziger", "Plannen en boeken van een reis")
 
 System_Boundary(s1, Triptop){
 Container(webApp,"Webapplicatie","React", "De applicatie waar de klant zijn reis kan plannen")
-Container(Backend, "Backend", "Java Spring-Boot", "Voert logica uit")
-Container(Database, "Database", "Microsoft Sql Server", "Opslaan van data")
 }
 
+System_Ext(centrale_identity_provider, "Centrale identity provider (Google, Microsoft, AirBnb)", "Identificeert gebruikers")
 
 
 Rel(Reiziger, webApp, "Voert inloggegevens in")
-Rel(webApp, Backend, "Stuurt inlogGegevens door")
-Rel(Backend, Database, "Vraagt gebruikersinformatie op")
-Rel(Backend, Backend, "Valideer inloggegevens")
-Rel(Backend, webApp, "Stuurt Token terug")
+Rel(webApp, centrale_identity_provider, "Authenticeert")
+Rel(centrale_identity_provider,webApp, "Geeft token terug")
 @enduml
