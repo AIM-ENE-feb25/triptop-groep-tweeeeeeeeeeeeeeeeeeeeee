@@ -1,0 +1,65 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+LAYOUT_WITH_LEGEND()
+
+title Component Diagram voor Triptop-backend
+
+Component(frontend, "Frontend")
+System_Boundary(c4, "Backend"){
+Component(AuthenticatieController, "AuthenticatieController" , "Java Spring mvc")
+Component(AuthenticatieService, "AuthenticatieService", "Java Spring mvc")
+
+Component(OvernachtingController, "OvernachtingController", "Java Spring mvc")
+Component(OvernachtingService, "OvernachtingService", "Java Spring mvc")
+
+Component(TreinController, "TreinController", "Java Spring mvc" , )
+Component(TreinService, "TreinService", "Java Spring mvc")
+
+Component(AutoController, "AutoController", "Java Spring mvc")
+Component(AutoService, "AutoService", "Java Spring mvc")
+
+Component(VliegtuigController, "VliegtuigController", "Java Spring mvc")
+Component(VliegtuigService, "VliegtuigService", "Java Spring mvc")
+
+Component(ActiviteitController, "ActiviteitController", "Java Spring mvc")
+Component(ActiviteitService, "ActiviteitService", "Java Spring mvc")
+
+Component(FoodController, "FoodController", "Java Spring mvc")
+Component(FoodService, "FoodService", "Java Spring mvc")
+
+Rel(AuthenticatieController,AuthenticatieService,)
+Rel(OvernachtingController, OvernachtingService,)
+Rel(TreinController, TreinService,)
+Rel(AutoController, AutoService,)
+Rel(VliegtuigController, VliegtuigService,)
+Rel(ActiviteitController, ActiviteitService,)
+Rel(FoodController, FoodService,)
+
+
+}
+
+System_Ext(Database, "Database")
+Rel(frontend, AuthenticatieController, "Stuurt data door")
+Rel(frontend, OvernachtingController,  "Stuurt data door")
+Rel(frontend, TreinController, "Stuurt data door")
+Rel(frontend, AutoController,  "Stuurt data door")
+Rel(frontend, "VliegtuigController",  "Stuurt data door")
+Rel(frontend, ActiviteitController, "Stuurt data door")
+Rel(frontend, FoodController, "Stuurt data door")
+
+System_Ext(centrale_identity_provider, "Centrale identity provider (Google, Microsoft, AirBnb)", "Identificeert gebruikers")
+System_Ext(overnachting_provider, "Overnachting provider (Booking.com, Airbnb)", Biedt overnachtingen aan)
+System_Ext(trein_provider, "Vervoer provider (NS, Deutsche Bahn)", Biedt vervoersmiddelen aan)
+System_Ext(vliegtuig_provider,"Vliegtuig provider (KLM)", "Biedt vluchten aan")
+System_Ext(auto_provider,"Auto provider (Sixt, Hertz)", "Biedt autoverhuur aan")
+System_Ext(activiteit_provider, "Activiteit provider (GetYourGuide, Tripadvisor)", Biedt activiteiten)
+System_Ext(food_provider, "Food provider (Takeaway, Eet.nu)", Biedt opties voor voedsel)
+
+Rel(AuthenticatieService, centrale_identity_provider, "Haalt gebruikers op")
+Rel(OvernachtingService,overnachting_provider, "beheert")
+Rel(TreinService,trein_provider,"beheert")
+Rel(AutoService,auto_provider,"beheert")
+Rel(VliegtuigService,vliegtuig_provider,"beheert")
+Rel(ActiviteitService,activiteit_provider,"beheert")
+Rel(FoodService,food_provider,"beheert")
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+title Component Diagram voor Triptop-frontend
+LAYOUT_WITH_LEGEND()
+SHOW_PERSON_OUTLINE()
+
+Person(Reiziger,"Reiziger", "Plannen en boeken van een reis")
+
+System_Boundary(Frontend, "Triptrop Frontend"){
+    Component(inlogComp, "InlogComponent", "React", "Pagina waar de gebruiker inlogt")
+    Component(BoekingComp, "BoekingComponent", "React", "Pagina waar gebruiker reis boekt/wijzigt")
+}
+
+Component(Backend, "Backend", "Spring", "Verwerkt aanvragen, beheert reisdata, en voert logica uit")
+
+Component_Ext(IdentityProvider, "Identity Provider", "EasyAuthenticator API", "zorgt voor authenticatie gebruiker")
+
+
+Rel(Reiziger, BoekingComp, "wilt boeken/ boeking aanpassen", formulier)
+Rel(Reiziger, inlogComp, logt in op, formulier)
+Rel(inlogComp, BoekingComp, "stuurt gebruiker door naar", link)
+Rel(BoekingComp, IdentityProvider, "stuurt inloggegevens door", JSON)
+Rel(BoekingComp, Backend, "stuurt boekingsdata door naar", JSON)
+Rel(IdentityProvider, IdentityProvider, "checkt authenticiteit van gebruiker", webtoken)
+
+
+
+@enduml
