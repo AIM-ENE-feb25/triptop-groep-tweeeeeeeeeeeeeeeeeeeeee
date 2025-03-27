@@ -12,21 +12,21 @@ Container_Boundary(frontend, "Frontend") {
     Component(adviesComponent, "Advies component", "React", "Laat reiziger advies van reisagenten vragen")
     Component(huidigeReisComponent, "Huidige reis component", "React", "Geeft de huidige reis weer")
     Component(reisoptiesComponent, "Reisopties component", "React", "Geeft mogelijke reisopties weer")
-    Component(bouwsteenComponent, "Bouwsteen component", "React", "Geeft bouwstenen weer")
+    Component(bouwstenenComponent, "Bouwstenen component", "React", "Geeft bouwstenen weer")
 }
 
-Rel_D(huidigeReisComponent, bouwsteenComponent, "Gebruikt")
-Rel_D(reisoptiesComponent, bouwsteenComponent, "Gebruikt")
+Rel_D(huidigeReisComponent, bouwstenenComponent, "Gebruikt")
+Rel_D(reisoptiesComponent, bouwstenenComponent, "Gebruikt")
 
-Container(backend, "Backend", "", "Biedt")
+Container(backend, "Backend", "", "Beheert reis en reisadvies")
 
 System_Ext(centraleIdentiteitProvider, "Centrale identiteit provider (Google, Microsoft, AirBnb)", "Authenticeert gebruikers")
 
-Rel_D(reiziger, loginComponent, "Logs in")
-Rel_D(reisagent, loginComponent, "Logs in")
+Rel_D(reiziger, loginComponent, "Logt in")
+Rel_D(reisagent, loginComponent, "Logt in")
 
-Rel_D(reiziger, logoutComponent, "Logs out")
-Rel_D(reisagent, logoutComponent, "Logs out")
+Rel_D(reiziger, logoutComponent, "Logt uit")
+Rel_D(reisagent, logoutComponent, "Logt uit")
 Rel_D(reiziger, adviesComponent, "Vraagt reisadvies")
 Rel_D(reisagent, adviesComponent, "Biedt reisadvies"))
 Rel_D(reiziger, huidigeReisComponent, "Stelt reis samen")

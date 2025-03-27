@@ -1,0 +1,26 @@
+@startuml
+
+title Code diagram backend externe service Triptop
+
+class Flight <<record>> {
+    +getDepartureTime() : DateTime
+    +getArrivalTime() : DateTime
+}
+
+class BuildingBlockService {
+}
+
+class FlightService {
+    +bookFlight(Flight flight) : boolean
+    +getFlights() : List<Flight>
+}
+
+interface BuildingBlock {
+    +getPrice() : Double
+}
+
+BuildingBlockService --> FlightService
+BuildingBlockService --> Flight
+Flight ..|> BuildingBlock
+
+@enduml
