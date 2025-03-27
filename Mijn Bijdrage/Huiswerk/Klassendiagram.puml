@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+ class BuildingBlockController{
+ saveBuildingBlock() : Response
+ }
+ class BuildingBlockService{
+
+   saveBuildingBlock(Integer): void
+ }
+
+ class Route{
+ - locationStart: String
+ -locationend: String
+ -id: Integer
+ - type: String
+ }
+
+ interface TravelAdapter{
+ getRoute(String start, String end, Integer id) : Route
+ }
+ class MapsApi{
+ getRoute(Location start, Location end, Integer) : Route
+ }
+
+BuildingBlockController -->  BuildingBlockService
+
+
+BuildingBlockService -->  Route
+
+BuildingBlockService  -->   MapsApi
+TravelAdapter <|..  MapsApi
+
+
+@enduml
