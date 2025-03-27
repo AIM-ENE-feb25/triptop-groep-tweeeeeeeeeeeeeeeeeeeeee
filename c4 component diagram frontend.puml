@@ -1,0 +1,44 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Component diagram frontend TravelExpensePro
+
+Person(reisagent, "Reisagent", "Biedt tweedelijns support")
+Person(reiziger, "Reiziger", "Voegt reis samen")
+
+Container_Boundary(frontend, "Frontend") {
+    Component(loginComponent, "Login component", "React", "Zorgt voor gebruikers authenticatie")
+    Component(logoutComponent, "Logout component", "React", "Vernietigt sessie data")
+    Component(adviesComponent, "Advies component", "React", "Laat reiziger advies van reisagenten vragen")
+    Component(huidigeReisComponent, "Huidige reis component", "React", "Geeft de huidige reis weer")
+    Component(reisoptiesComponent, "Reisopties component", "React", "Geeft mogelijke reisopties weer")
+    Component(bouwsteenComponent, "Bouwsteen component", "React", "Geeft bouwstenen weer")
+}
+
+Rel_D(huidigeReisComponent, bouwsteenComponent, "Gebruikt")
+Rel_D(reisoptiesComponent, bouwsteenComponent, "Gebruikt")
+
+Container(backend, "Backend", "", "Biedt")
+
+System_Ext(centraleIdentiteitProvider, "Centrale identiteit provider (Google, Microsoft, AirBnb)", "Authenticeert gebruikers")
+
+Rel_D(reiziger, loginComponent, "Logs in")
+Rel_D(reisagent, loginComponent, "Logs in")
+
+Rel_D(reiziger, logoutComponent, "Logs out")
+Rel_D(reisagent, logoutComponent, "Logs out")
+Rel_D(reiziger, adviesComponent, "Vraagt reisadvies")
+Rel_D(reisagent, adviesComponent, "Biedt reisadvies"))
+Rel_D(reiziger, huidigeReisComponent, "Stelt reis samen")
+Rel_D(reisagent, huidigeReisComponent, "Bekijkt trip")
+Rel_D(reiziger, reisoptiesComponent, "Bekijkt reisopties")
+Rel_D(reisagent, reisoptiesComponent, "Bekijkt reisopties")
+
+Rel_D(loginComponent, centraleIdentiteitProvider, "Vraagt authenticatie token", "JSON/HTTPS")
+Rel_D(adviesComponent, backend, "Leest en schrijft advies", "JSON/HTTPS")
+Rel_D(huidigeReisComponent, backend, "Vraagt en wijzigt huidige reis", "JSON/HTTPS")
+Rel_D(reisoptiesComponent, backend, "Vraagt reisopties", "JSON/HTTPS")
+
+LAYOUT_WITH_LEGEND()
+
+@enduml
