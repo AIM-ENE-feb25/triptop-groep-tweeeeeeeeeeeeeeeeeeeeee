@@ -1,0 +1,46 @@
+@startuml
+
+class BuildingBlockService{
+    createFlight()
+}
+
+class FlightService{
+    getFlight()
+}
+
+class BuildingBlockRepo{
+    deleteBuildingBlock(int id)
+}
+
+interface BuildingBlock{
+}
+
+class Flight{
+}
+
+class Food{
+}
+
+class activity{
+}
+
+class CarRental{
+}
+
+class Train{
+}
+
+class Overnight{
+}
+
+BuildingBlock <|.. Flight
+BuildingBlock <|.. CarRental
+BuildingBlock <|.. activity
+BuildingBlock <|.. Train
+BuildingBlock <|.. Food
+BuildingBlock <|.. Overnight
+BuildingBlockService --> FlightService
+BuildingBlockService --> BuildingBlockRepo
+FlightService --> Flight
+@enduml
+
