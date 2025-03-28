@@ -1,8 +1,7 @@
 @startuml
 
 class Advice {
-    - adviceStrategy
-    + generateStrategy()
+    + generateStrategy(adviceStrategy)
 }
 
 class AdviceStrategy {
