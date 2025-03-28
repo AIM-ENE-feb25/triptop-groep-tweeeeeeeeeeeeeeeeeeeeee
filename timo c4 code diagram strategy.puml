@@ -1,0 +1,23 @@
+@startuml
+
+class Advice {
+    - adviceStrategy
+    + generateStrategy()
+}
+
+class AdviceStrategy {
+    generateStrategy()
+}
+
+class SimpleAdviceStrategy{
+
+}
+
+class AdvancedAdviceStrategy{
+
+}
+
+Advice --> AdviceStrategy
+SimpleAdviceStrategy..|>AdviceStrategy
+AdvancedAdviceStrategy..|>AdviceStrategy
+@enduml
