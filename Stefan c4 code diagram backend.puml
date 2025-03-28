@@ -7,12 +7,20 @@ class Flight <<record>> {
     +getArrivalTime() : DateTime
 }
 
+class Car <<record>> {
+    +getBrand() : String
+}
+
 class BuildingBlockService {
+    +book(BuildingBlock buildingBlock) : boolean
 }
 
 class FlightService {
-    +bookFlight(Flight flight) : boolean
-    +getFlights() : List<Flight>
+    +book(BuildingBlock flight) : boolean
+}
+
+class CarRentalService {
+    +book(BuildingBlock car) : boolean
 }
 
 interface BuildingBlock {
@@ -20,7 +28,20 @@ interface BuildingBlock {
 }
 
 BuildingBlockService --> FlightService
+BuildingBlockService --> CarRentalService
+BuildingBlockService --> Car
 BuildingBlockService --> Flight
 Flight ..|> BuildingBlock
+Car ..|> BuildingBlock
+
+
+node "KLM API" as KLM {
+}
+
+node "Hertz API" as Hertz {
+}
+
+FlightService -- KLM
+CarRentalService -- Hertz
 
 @enduml
