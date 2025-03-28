@@ -1,7 +1,7 @@
 public class TranslateToDutch {
 
     public static void main(String[] args) {
-        String word = "fly";
+        String word = "car";
 
         IDirectoryAdapter dictionary =  DirectoryAdapterFactory.getDirectoryAdapter("koenen");
         String translation = dictionary.translate(word);

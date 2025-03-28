@@ -3,7 +3,8 @@ public class KoenenAdapter implements IDirectoryAdapter{
 
     public KoenenAdapter() {
         this.koenen = new KoenenDirectory();
-        this.koenen.openEnglishDutch();
+        this.koenen.openDutchEnglish();
+
     }
 
     @Override

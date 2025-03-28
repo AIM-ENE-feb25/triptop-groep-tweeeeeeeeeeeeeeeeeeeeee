@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Code Diagram Backend Adapter voor triptop
+
+class BouwsteenController{
+    main(args: String): void
+}
+class BouwsteenService{}
+class TreinAdapterFactory
+{
+    getTreinAdapter(treinNaam: String): ITreinAdapter
+}
+class Ns
+{
+   maakReis(): void
+}
+class DeutscheBahn
+{
+   vindReis(): void
+}
+interface ITreinAdapter{
+   boekReis(): void
+}
+class NsAdapter{
+
+}
+class DeutscheBahnAdapter{
+
+}
+
+BouwsteenController --> BouwsteenService
+BouwsteenService --> ITreinAdapter
+BouwsteenService ..> TreinAdapterFactory
+NsAdapter..|> ITreinAdapter
+DeutscheBahnAdapter ..|> ITreinAdapter
+NsAdapter -->  "1 ns" Ns
+DeutscheBahnAdapter --> "1 deutschebahn"DeutscheBahn
+TreinAdapterFactory ..> ITreinAdapter
+@enduml
