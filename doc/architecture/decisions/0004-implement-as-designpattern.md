@@ -10,6 +10,10 @@ Accepted
 
 We need to choose a design pattern based on the following question: "Hoe kunnen we verschillende externe vervoersservices (zoals Google Maps of een veerdienst API) integreren zonder afhankelijk te worden van hun specifieke implementaties"
 
+## Alternatives 
+
+The alternative pattern for answering the question are the factory pattern, adapter pattern. This are the alternatives because both patters are structral patters following refactoring guru.
+
 ## Decision
 
 We decided to use the adapter pattern to answer the question.The adapter pattern will allow us to create a concistent interface for interacting with various external services while maintaining flexibility and so reducing direct dependencies.This pattern is highly recommended pattern for this kind of question according to the refectoring guru. We also made a small application to test the adapter pattern and that proved that this pattern would be a good option to implement. 
