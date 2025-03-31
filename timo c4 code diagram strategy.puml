@@ -1,4 +1,5 @@
 @startuml
+title code diagram for advice strategy
 
 class Advice {
     + generateStrategy(adviceStrategy)
