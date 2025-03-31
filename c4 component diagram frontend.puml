@@ -18,7 +18,7 @@ Container_Boundary(frontend, "Frontend") {
 Rel_D(huidigeReisComponent, bouwstenenComponent, "Gebruikt")
 Rel_D(reisoptiesComponent, bouwstenenComponent, "Gebruikt")
 
-Container(backend, "Backend", "", "Beheert reis en reisadvies")
+Container(backend, "Backend", "Spring boot", "Beheert reis en reisadvies")
 
 System_Ext(centraleIdentiteitProvider, "Centrale identiteit provider (Google, Microsoft, AirBnb)", "Authenticeert gebruikers")
 

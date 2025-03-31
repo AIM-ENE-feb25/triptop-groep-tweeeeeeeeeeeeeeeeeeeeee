@@ -3,12 +3,15 @@
 title Code diagram backend externe service Triptop
 
 class Flight <<record>> {
-    +getDepartureTime() : DateTime
-    +getArrivalTime() : DateTime
+    -departureTime : DateTime
+    -arrivalTime : DateTime
+    +departureTime() : DateTime
+    +arrivalTime() : DateTime
 }
 
 class Car <<record>> {
-    +getBrand() : String
+    -brand : String
+    +brand() : String
 }
 
 class BuildingBlockService {
@@ -24,7 +27,7 @@ class CarRentalService {
 }
 
 interface BuildingBlock {
-    +getPrice() : Double
+    +price() : Double
 }
 
 BuildingBlockService --> FlightService

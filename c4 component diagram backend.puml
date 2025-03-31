@@ -4,15 +4,15 @@
 title Component diagram backend Triptop
 
 Container_Boundary(backend, "Backend") {
-    Component(bouwsteenController, "Bouwsteen controller", "component")
-    Component(bouwsteenService, "Bouwsteen service", "component")
-    Component(bouwsteenRepository, "Bouwsteen repository", "component")
+    Component(bouwsteenController, "Bouwsteen controller", "Spring boot")
+    Component(bouwsteenService, "Bouwsteen service", "Spring boot")
+    Component(bouwsteenRepository, "Bouwsteen repository", "Spring boot")
 
-    Component(authService, "Authenticatie service", "component")
+    Component(authService, "Authenticatie service", "Spring boot")
 
-    Component(adviesController, "Advies controller", "component")
-    Component(adviesService, "Advies service", "component")
-    Component(adviesRepository, "Advies service", "component")
+    Component(adviesController, "Advies controller", "Spring boot")
+    Component(adviesService, "Advies service", "Spring boot")
+    Component(adviesRepository, "Advies service", "Spring boot")
 }
 
 Rel_D(bouwsteenController, bouwsteenService, "Gebruikt")

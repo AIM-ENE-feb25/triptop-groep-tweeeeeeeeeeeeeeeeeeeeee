@@ -1,6 +1,6 @@
-# 3. Implement as building block strategy
+# 7. Implement as building block strategy
 
-Date: 2025-03-27
+Date: 2025-03-28
 
 ## Status
 
@@ -20,4 +20,4 @@ Due to time constraints the only other alternative is no pattern. Thus we have d
 
 ## Consequences
 
-Code without a pattern could be suboptimal
+Code without a pattern could be suboptimal and might not be as easy to understand
