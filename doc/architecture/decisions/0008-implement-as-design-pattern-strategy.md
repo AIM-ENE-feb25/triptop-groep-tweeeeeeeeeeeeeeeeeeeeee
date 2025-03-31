@@ -10,6 +10,10 @@ Accepted
 
 We need to choose a design pattern for how we will implement the delegation of advice strategies. Advice is given to the traveler based upon data received by the api
 
+## Alternative
+
+An alternative is not doing any pattern for this use case.
+
 ## Decision
 
 We decided upon the design pattern strategy for this use case. This will allow us to easily switch between the different building blocks. 
