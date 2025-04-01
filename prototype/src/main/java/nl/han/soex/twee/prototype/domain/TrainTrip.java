@@ -1,4 +1,6 @@
 package nl.han.soex.twee.prototype.domain;
 
-public record TrainTrip(double price) implements BuildingBlock {
+import java.time.OffsetDateTime;
+
+public record TrainTrip(double price, OffsetDateTime plannedDepartureDateTime, OffsetDateTime plannedArrivalDateTime) implements BuildingBlock {
 }
