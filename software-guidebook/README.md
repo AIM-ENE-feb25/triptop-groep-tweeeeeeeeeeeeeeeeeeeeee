@@ -9,16 +9,9 @@ Dit software guidebook geeft een overzicht van de Triptop-applicatie. Het bevat 
 
 ## 2. Context
 
-> [!IMPORTANT]
-> Werk zelf dit hoofdstuk uit met context diagrammen en een beschrijving van de context van de software.
-
+Triptop wil een applicatie geïnspireerd op [Ellipsis Travel](https://www.ellipsistravel.com/) voor de Nederlandse markt ontwikkelen. Met de webapplicatie kan een reiziger zelf zijn reis samenstellen. De reiziger koppelt verschillende bouwstenen aan elkaar en vormt daarmee zijn eigen reis. Een reisagent zal de rol van tweedelijns support vervullen. Deze tweedelijns support biedt advies wanneer een reiziger er zelf niet uitkomt of wanneer hij/zij/hun zijn uiteindelijke reisplan wil bespreken. Reiziger stellen tegenwoordig steeds meer zelf hun reis samen. Hieronder staat een context diagram voor triptop.
 
 ![Context diagram](./context_diagram.svg)
-
-Toelichting op de context van de software inclusief System Context Diagram:
-* Functionaliteit
-* Gebruikers
-* Externe systemen
 
 ## 3. Functional Overview
 
@@ -70,13 +63,17 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 
 ## 5. Constraints
 
-> [!IMPORTANT]
-> Beschrijf zelf de beperkingen die op voorhand bekend zijn die invloed hebben op keuzes die wel of niet gemaakt kunnen of mogen worden.
+* Deployment platform:
+  * Browser
+  * Server
+* Formaat voor communicatie met externe API's: JSON
+* Communicatie met externe API's: HTTPS
 
 ## 6. Principles
 
-> [!IMPORTANT]
-> Beschrijf zelf de belangrijkste architecturele en design principes die zijn toegepast in de software.
+* Dependency injection
+* DRY (don't repeat yourself), we geven voorkeur aan weinig dubbele code
+* Don't reinvent the wheel, we geven voorkeur aan het gebruik van design patterns wanneer mogelijk
 
 ## 7. Software Architecture
 
