@@ -5,6 +5,8 @@
 
 title Dynamic Container diagram voor Triptop - Reisplanning
 
+SHOW_PERSON_OUTLINE()
+
 Person(reiziger, "Reiziger", "Stelt reis samen")
 Person(reisagent, "Reisagent", "Biedt tweedelijns support")
 
