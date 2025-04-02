@@ -27,4 +27,6 @@ Rel(triptop, vliegtuig_provider, "Boekt vliegtuig")
 Rel(triptop, activiteit_provider, "Boekt activiteiten")
 Rel(triptop, food_provider, "Regelt voedsel")
 
+LAYOUT_WITH_LEGEND()
+
 @enduml

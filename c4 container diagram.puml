@@ -2,8 +2,7 @@
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-title Static Container diagram voor Triptop - Reisplanning
-SHOW_PERSON_OUTLINE()
+title Static Container diagram voor Triptop
 
 Person(reiziger, "Reiziger", "Stelt reis samen")
 Person(reisagent, "Reisagent", "Biedt tweedelijns support")
@@ -15,11 +14,11 @@ System_Boundary(triptop_system, "Triptop") {
 }
 
 System_Ext(centrale_identity_provider, "Centrale identity provider (Google, Microsoft, AirBnb)", "Identificeert gebruikers")
-System_Ext(overige_providers, "Overige providers(Ns, Booking.com, DrivingDirection)", "")
+System_Ext(overige_providers, "Overige providers(NS, KLM, AirBnb)", "Biedt data over reisopties en verwerkt boekingen")
 
 Rel_D(reiziger, frontend, "Plant reis")
 Rel_L(frontend, backend, "Vraagt informatie", "JSON/HTTPS")
-Rel_L(backend, db, "Slaat reisplannen op", "SQL")
+Rel_R(backend, db, "Slaat reisplannen op", "SQL")
 Rel_D(reiziger, frontend, "Vraagt advies")
 Rel_D(reisagent, frontend, "Geeft advies")
 Rel_D(reiziger, frontend, "Boekt reis")
@@ -28,7 +27,6 @@ Rel_D(frontend, centrale_identity_provider, "Authenticeert", "JSON/HTTPS")
 Rel_D(backend, centrale_identity_provider, "Identificeert gebruikers", "JSON/HTTPS")
 Rel_D(backend, overige_providers, "Vraagt Data", "JSON/HTTPS")
 
-Rel(centrale_identity_provider, frontend, "Geeft token","JSON/HTTPS")
-Rel_U(overige_providers, backend, "Geeft data terug","JSON/HTTPS")
+LAYOUT_WITH_LEGEND()
 
 @enduml

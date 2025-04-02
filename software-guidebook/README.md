@@ -82,8 +82,12 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 > [!IMPORTANT]
 > Voeg toe: Container Diagram plus een Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
 
-![Static Container Diagram](./C4_static_containerdiagram_triptop.svg)
+Hieronder een statische containerdiagram van de Triptop webapplicatie. Om deze diagram overzichtelijk gehouden is ervoor gekozen geen returnlijnen toe te voegen wanneer er iets wordt opgevraagd.
 
+![Static Container Diagram](./static_container_diagram.svg)
+
+
+<!-- TODO splitten in meedere -->
 ![Dynamic Container Diagram](./C4_Dynamic_container_boekreis.svg)
 
 ![Dynamic Container Diagram](./C4_Dynamic_container_inloggen.svg)
