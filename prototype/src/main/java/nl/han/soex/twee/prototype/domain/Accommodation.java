@@ -1,4 +1,5 @@
 package nl.han.soex.twee.prototype.domain;
 
-public record Accommodation(double price) implements BuildingBlock {
+public record Accommodation(int hotelId, double price, String currency) implements BuildingBlock {
+
 }

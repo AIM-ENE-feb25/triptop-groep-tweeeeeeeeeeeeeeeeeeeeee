@@ -1,5 +1,6 @@
 package nl.han.soex.twee.prototype.service.AdviceStrategies;
 
+import nl.han.soex.twee.prototype.domain.Accommodation;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -12,7 +13,9 @@ import java.net.URL;
 public class PriciestAdviceStrategy extends AdviceStrategy {
 
     @Override
-    public String generateAdvice() {
+    public Accommodation[] generateAdvice() {
+        Accommodation[] accoArray = new Accommodation[0];
+
         try {
             HttpURLConnection connection = getHttpURLConnection();
 
@@ -29,24 +32,35 @@ public class PriciestAdviceStrategy extends AdviceStrategy {
 
                 JSONObject jsonResponse = new JSONObject(response.toString());
                 JSONArray hotels = jsonResponse.getJSONObject("data").getJSONArray("hotels");
-
                 if (hotels.length() >= 3) {
-                    for(int i = (hotels.length()-3); i < hotels.length(); i++) {
+                    accoArray = new Accommodation[3];
+
+                    for (int i = hotels.length() - 1; i > hotels.length() - 4; i--) {
                         JSONObject hotel = hotels.getJSONObject(i);
                         int hotelId = hotel.getInt("hotel_id");
                         JSONObject priceObj = hotel.getJSONObject("property").getJSONObject("priceBreakdown").getJSONObject("grossPrice");
                         double price = priceObj.getDouble("value");
                         String currency = priceObj.getString("currency");
 
+                        Accommodation a = new Accommodation(hotelId, price, currency);
+
+                        accoArray[hotels.length() - 1 - i] = a;
+
                         System.out.println("Hotel ID: " + hotelId + ", Price: " + price + currency);
                     }
                 } else {
+                    accoArray = new Accommodation[hotels.length()];
+
                     for (int i = hotels.length(); i > 0; i--) {
                         JSONObject hotel = hotels.getJSONObject(i);
                         int hotelId = hotel.getInt("hotel_id");
                         JSONObject priceObj = hotel.getJSONObject("property").getJSONObject("priceBreakdown").getJSONObject("grossPrice");
                         double price = priceObj.getDouble("value");
                         String currency = priceObj.getString("currency");
+
+                        Accommodation a = new Accommodation(hotelId, price, currency);
+
+                        accoArray[hotels.length() - i] = a;
 
                         System.out.println("Hotel ID: " + hotelId + ", Price: " + price + currency);
                     }
@@ -59,7 +73,7 @@ public class PriciestAdviceStrategy extends AdviceStrategy {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return accoArray;
     }
 
     private static HttpURLConnection getHttpURLConnection() throws IOException {
