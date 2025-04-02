@@ -1,79 +1,88 @@
 package nl.han.soex.twee.prototype.service.AdviceStrategies;
 
+import nl.han.soex.twee.prototype.domain.Accommodation;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class PriciestAdviceStrategy extends AdviceStrategy {
 
     @Override
-    public String generateAdvice() {
+    public Accommodation[] generateAdvice() {
+        Accommodation[] accoArray = new Accommodation[0];
+
         try {
-            // API URL
-            URL url = new URL("https://airbnb19.p.rapidapi.com/api/v1/searchPropertyByLocationV2?location=london&totalRecords=10&currency=USD&adults=1");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            HttpURLConnection connection = getHttpURLConnection();
 
-            // Set request method and headers
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
-            conn.setRequestProperty("x-rapidapi-key", "0166b08242msh8abe465de914eecp1d9efbjsn3c2279e391f2");
-            conn.setRequestProperty("x-rapidapi-host", "airbnb19.p.rapidapi.com");
-
-            // Read the response
-            int responseCode = conn.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) { // 200 OK
-                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String inputLine;
                 StringBuilder response = new StringBuilder();
-                String line;
 
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
+                while ((inputLine = br.readLine()) != null) {
+                    response.append(inputLine);
                 }
-                reader.close();
+                br.close();
 
-                // Parse JSON response
-                parseAndPrintTopListings(response.toString());
+                JSONObject jsonResponse = new JSONObject(response.toString());
+                JSONArray hotels = jsonResponse.getJSONObject("data").getJSONArray("hotels");
+                if (hotels.length() >= 3) {
+                    accoArray = new Accommodation[3];
+
+                    for (int i = hotels.length() - 1; i > hotels.length() - 4; i--) {
+                        JSONObject hotel = hotels.getJSONObject(i);
+                        int hotelId = hotel.getInt("hotel_id");
+                        JSONObject priceObj = hotel.getJSONObject("property").getJSONObject("priceBreakdown").getJSONObject("grossPrice");
+                        double price = priceObj.getDouble("value");
+                        String currency = priceObj.getString("currency");
+
+                        Accommodation a = new Accommodation(hotelId, price, currency);
+
+                        accoArray[hotels.length() - 1 - i] = a;
+
+                        System.out.println("Hotel ID: " + hotelId + ", Price: " + price + currency);
+                    }
+                } else {
+                    accoArray = new Accommodation[hotels.length()];
+
+                    for (int i = hotels.length(); i > 0; i--) {
+                        JSONObject hotel = hotels.getJSONObject(i);
+                        int hotelId = hotel.getInt("hotel_id");
+                        JSONObject priceObj = hotel.getJSONObject("property").getJSONObject("priceBreakdown").getJSONObject("grossPrice");
+                        double price = priceObj.getDouble("value");
+                        String currency = priceObj.getString("currency");
+
+                        Accommodation a = new Accommodation(hotelId, price, currency);
+
+                        accoArray[hotels.length() - i] = a;
+
+                        System.out.println("Hotel ID: " + hotelId + ", Price: " + price + currency);
+                    }
+                }
             } else {
-                System.out.println("HTTP Request Failed. Response Code: " + responseCode);
+                System.out.println("GET request failed: " + responseCode);
             }
 
-            conn.disconnect();
+            connection.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return accoArray;
     }
 
-    private static void parseAndPrintTopListings(String jsonResponse) {
-        try {
-            // Parse JSON
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode rootNode = objectMapper.readTree(jsonResponse);
-            JsonNode list = rootNode.path("data").path("list");
+    private static HttpURLConnection getHttpURLConnection() throws IOException {
+        URL url = new URL("https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels?dest_id=-2092174&search_type=CITY&arrival_date=2025-04-10&departure_date=2025-04-24&sort_by=price&units=metric&temperature_unit=c&languagecode=en-us&currency_code=USD&location=US");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-            if (list.isArray()) {
-                // Print top 3 listings
-                for (int i = 0; i < Math.min(4, list.size()); i++) {
-                    JsonNode listingNode = list.get(i).path("listing");
-                    String name = listingNode.path("name").asText("N/A");
-                    String price = list.get(i).path("pricingQuote").path("structuredStayDisplayPrice").path("primaryLine").path("price").asText("N/A");
-                    String url = listingNode.path("url").asText("N/A");
-
-                    System.out.println("Listing #" + (i + 1));
-                    System.out.println("Name: " + name);
-                    System.out.println("Price: " + price);
-                    System.out.println("URL: " + url);
-                    System.out.println("-------------------------");
-                }
-            } else {
-                System.out.println("No listings found.");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("x-rapidapi-key", "96c5f5a0f3msh929cfe13a11db73p1c5ad2jsnc5f174407d9a");
+        connection.setRequestProperty("x-rapidapi-host", "booking-com15.p.rapidapi.com");
+        return connection;
     }
 }

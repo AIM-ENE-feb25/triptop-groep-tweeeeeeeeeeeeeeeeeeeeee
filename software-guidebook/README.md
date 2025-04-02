@@ -82,11 +82,11 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 > [!IMPORTANT]
 > Voeg toe: Container Diagram plus een Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
 
-![Static Container Diagram](../Static_Container_diagram.svg)
+![Static Container Diagram](./C4_static_containerdiagram_triptop.svg)
 
-![Dynamic Container Diagram](../Dynamic_Container_Diagram.svg)
+![Dynamic Container Diagram](./C4_Dynamic_container_boekreis.svg)
 
-![Dynamic Container Diagram](../Dynamic_Container_Diagram_Inloggen.svg)
+![Dynamic Container Diagram](./C4_Dynamic_container_inloggen.svg)
 
 
 ###     7.2. Components
