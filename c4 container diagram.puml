@@ -8,7 +8,7 @@ Person(reiziger, "Reiziger", "Stelt reis samen")
 Person(reisagent, "Reisagent", "Biedt tweedelijns support")
 
 System_Boundary(triptop_system, "Triptop") {
-  Container(frontend, "Web Application", "React", "Biedt reisplanning UI")
+  Container(frontend, "Frontend", "React", "Biedt reisplanning UI")
   Container(backend, "Backend", "Spring Boot", "Beheert reizen")
   Container(db, "Database", "Microsoft SQL Server", "Slaat reisplannen op")
 }

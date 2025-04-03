@@ -1,0 +1,30 @@
+@startuml "Triptop Dynamic Container Diagram"
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
+
+title Dynamic Container diagram voor Triptop - Reisoptie kiezen
+
+Person(reiziger, "Reiziger", "Stelt reis samen")
+
+System_Boundary(triptop_system, "Triptop") {
+  Container(frontend, "Frontend", "React", "Biedt reisplanning UI")
+  Container(backend, "Backend", "Spring Boot", "Beheert reizen")
+  Container(db, "Database", "Microsoft SQL Server", "Slaat reisplannen op")
+}
+
+System_Ext(overige_providers, "Overige providers(NS, KLM, AirBnb)", "Biedt data over reisopties en verwerkt boekingen")
+
+Rel_D(reiziger, frontend, "Bekijkt reisopties")
+Rel_L(frontend, backend, "Vraagt reisopties", "JSON/HTTPS")
+Rel_D(backend, overige_providers, "Vraagt reisopties", "JSON/HTTPS")
+Rel_U(overige_providers, backend, "Geeft reisopties terug","JSON/HTTPS")
+Rel_R(backend, frontend, "Geeft reisopties terug","JSON/HTTPS")
+
+Rel_D(reiziger, frontend, "Kiest reisoptie")
+Rel_L(frontend, backend, "Stuurt gekozen reisoptie", "JSON/HTTPS")
+Rel_L(backend, db, "Slaat gekozen reisoptie op", "SQL")
+
+LAYOUT_WITH_LEGEND()
+
+@enduml

@@ -31,8 +31,6 @@ Rel_D(reiziger, frontend, "Boekt reis")
 Rel_L(frontend, backend, "Boekt reis", "JSON/HTTPS")
 Rel_D(backend, overige_providers, "Boekt reis", "JSON/HTTPS")
 
-
-
-
+LAYOUT_WITH_LEGEND()
 
 @enduml

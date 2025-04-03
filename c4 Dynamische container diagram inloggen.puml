@@ -2,19 +2,19 @@
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
 
 title Dynamic Container diagram voor Triptop - Inloggen
-SHOW_PERSON_OUTLINE()
-LAYOUT_TOP_DOWN()
 
-Person(Reiziger, "Reiziger", "Plannen en boeken van een reis")
+Person(reiziger, "Reiziger", "Stelt reis samen")
 
-System_Boundary(s1, Triptop){
-Container(webApp,"Webapplicatie","React", "De applicatie waar de klant zijn reis kan plannen")
+System_Boundary(triptop_system, "Triptop") {
+  Container(frontend, "Frontend", "React", "Biedt reisplanning UI")
 }
 
 System_Ext(centrale_identity_provider, "Centrale identity provider (Google, Microsoft, AirBnb)", "Identificeert gebruikers")
 
+Rel_D(reiziger, frontend, "Voert inloggegevens in")
+Rel_D(frontend, centrale_identity_provider, "Authenticeert")
+Rel_D(centrale_identity_provider, frontend, "Geeft token terug")
 
-Rel(Reiziger, webApp, "Voert inloggegevens in")
-Rel(webApp, centrale_identity_provider, "Authenticeert")
-Rel(centrale_identity_provider,webApp, "Geeft token terug")
+LAYOUT_WITH_LEGEND()
+
 @enduml

@@ -79,24 +79,38 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 
 ###     7.1. Containers
 
-> [!IMPORTANT]
-> Voeg toe: Container Diagram plus een Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
+Deze paragraaf bevat een statische containerdiagram van de gehele Triptop webapplicatie en dynamische containerdiagrammen van de drie belangrijkste scenario's.
 
-Hieronder een statische containerdiagram van de Triptop webapplicatie. Om deze diagram overzichtelijk gehouden is ervoor gekozen geen returnlijnen toe te voegen wanneer er iets wordt opgevraagd.
+Hieronder staat het statische containerdiagram van de Triptop webapplicatie. Om dit diagram overzichtelijk te houden is ervoor gekozen geen returnlijnen toe te voegen wanneer er iets wordt opgevraagd. Verder hebben wij de keuze gemaakt de overige providers te bundelen aangezien ze allemaal dezelfde relatie met de backend hebben. Daarnaast hebben wij gekozen voor drie relaties tussen de reiziger en de frontend, zodat de belangrijke acties explicitiet worden weergeven. Aangezien inloggen geen doel op zichzelf is is deze buiten beschouwing gelaten.
 
 ![Static Container Diagram](./static_container_diagram.svg)
 
+Hieronder staat het dynamische containerdiagram van het inloggen. Aangezien de backend pas een token verifieerd bij latere acties, en niet bij het inloggen zelf, is dit geen onderdeel van dit diagram.
 
-<!-- TODO splitten in meedere -->
-![Dynamic Container Diagram](./C4_Dynamic_container_boekreis.svg)
+![Dynamic Container Diagram inloggen](./dynamic_container_diagram_inloggen.svg)
 
-![Dynamic Container Diagram](./C4_Dynamic_container_inloggen.svg)
+Hieronder staat het dynamische containerdiagram van het kiezen van een reisoptie. Wij hebben gekozen de reisopties niet in de backend te cachen, omdat er dan reisopties die niet meer beschikbaar zijn kunnen worden weergegeven.
 
+![Dynamic Container Diagram reisoptie kiezen](./dynamic_container_diagram_reisoptie_kiezen.svg)
+
+Hieronder staat het dynamische containerdiagram voor het boeken van een reis. Wij hebben de keuze gemaakt om initieel te praten over het boeken van een reis en later over een reisplan, aangezien het reisplan pas bekend is als deze is opgehaald uit de database.
+
+![Dynamic Container Diagram reis boeken](./dynamic_container_diagram_reis_boeken.svg)
 
 ###     7.2. Components
 
 > [!IMPORTANT]
 > Voeg toe: Component Diagram plus een Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
+
+Deze paragraaf bevat twee componentdiagrammen van de frontend en backend.
+
+Hieronder staat het componentdiagram van de frontend. Wij hebben gekozen voor een bouwstenencomponent enkel voor visuele weergave, waardoor een duidelijke scheiding tussen de huidige reis en reisopties kan worden weergegeven.
+
+![Component Diagram frontend](./component_diagram_frontend.svg)
+
+Hieronder staat het componentdiagram van de backend. We hebben gekozen direct de controllers met de authenticatie service te verbinden, zodat iemands authenticatie zo snel mogelijk wordt geverifieerd.
+
+![Component Diagram backend](./component_diagram_backend.svg)
 
 ###     7.3. Design & Code
 

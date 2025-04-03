@@ -1,7 +1,7 @@
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
-title Component diagram frontend TravelExpensePro
+title Component diagram frontend Triptop
 
 Person(reisagent, "Reisagent", "Biedt tweedelijns support")
 Person(reiziger, "Reiziger", "Voegt reis samen")
@@ -15,8 +15,8 @@ Container_Boundary(frontend, "Frontend") {
     Component(bouwstenenComponent, "Bouwstenen component", "React", "Geeft bouwstenen weer")
 }
 
-Rel_D(huidigeReisComponent, bouwstenenComponent, "Gebruikt")
-Rel_D(reisoptiesComponent, bouwstenenComponent, "Gebruikt")
+Rel(huidigeReisComponent, bouwstenenComponent, "Gebruikt")
+Rel(reisoptiesComponent, bouwstenenComponent, "Gebruikt")
 
 Container(backend, "Backend", "Spring boot", "Beheert reis en reisadvies")
 
@@ -36,8 +36,8 @@ Rel_D(reisagent, reisoptiesComponent, "Bekijkt reisopties")
 
 Rel_D(loginComponent, centraleIdentiteitProvider, "Vraagt authenticatie token", "JSON/HTTPS")
 Rel_D(adviesComponent, backend, "Leest en schrijft advies", "JSON/HTTPS")
-Rel_D(huidigeReisComponent, backend, "Vraagt en wijzigt huidige reis", "JSON/HTTPS")
-Rel_D(reisoptiesComponent, backend, "Vraagt reisopties", "JSON/HTTPS")
+Rel_R(huidigeReisComponent, backend, "Vraagt en wijzigt huidige reis", "JSON/HTTPS")
+Rel_R(reisoptiesComponent, backend, "Vraagt reisopties", "JSON/HTTPS")
 
 LAYOUT_WITH_LEGEND()
 

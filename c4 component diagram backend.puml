@@ -4,15 +4,15 @@
 title Component diagram backend Triptop
 
 Container_Boundary(backend, "Backend") {
-    Component(bouwsteenController, "Bouwsteen controller", "Spring boot")
-    Component(bouwsteenService, "Bouwsteen service", "Spring boot")
-    Component(bouwsteenRepository, "Bouwsteen repository", "Spring boot")
+    Component(bouwsteenController, "Bouwsteen controller", "Spring boot", "Bevat endpoints")
+    Component(bouwsteenService, "Bouwsteen service", "Spring boot", "Bevat business logica")
+    Component(bouwsteenRepository, "Bouwsteen repository", "Spring boot", "Communiceert met database")
 
-    Component(authService, "Authenticatie service", "Spring boot")
+    Component(authService, "Authenticatie service", "Spring boot", "Bevat business logica")
 
-    Component(adviesController, "Advies controller", "Spring boot")
-    Component(adviesService, "Advies service", "Spring boot")
-    Component(adviesRepository, "Advies service", "Spring boot")
+    Component(adviesController, "Advies controller", "Spring boot", "Bevat endpoints")
+    Component(adviesService, "Advies service", "Spring boot", "Bevat business logica")
+    Component(adviesRepository, "Advies repository", "Spring boot", "Communiceert met database")
 }
 
 Rel_D(bouwsteenController, bouwsteenService, "Gebruikt")
@@ -22,8 +22,8 @@ Rel_D(adviesController, authService, "Gebruikt")
 Rel_D(adviesController, adviesService, "Gebruikt")
 Rel_D(adviesService, adviesRepository, "Gebruikt")
 
-Container(frontend, "Frontend", "React")
-Container(database, "Database", "Microsoft SQL Server")
+Container(frontend, "Frontend", "React", "Biedt reisplanning UI")
+Container(database, "Database", "Microsoft SQL Server", "Slaat reisplannen op")
 
 System_Ext(centraleIdentiteitProvider, "Centrale identiteit provider (Google, Microsoft, AirBnb)", "Authenticeert gebruikers")
 System_Ext(treinProvider, "Treinreis provider (NS, Deutsche Bahn)", "Biedt treinreizen")
