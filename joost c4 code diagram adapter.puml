@@ -2,18 +2,12 @@
 'https://plantuml.com/class-diagram
 title Code Diagram Backend Adapter voor triptop
 
-class TravelController{
-    getTravelData(locationStart: String, locationEnd: String, travelType: String): void
-}
+
 class TravelService{
     getTravelData(locationStart: String, locationEnd: String, travelType: String): void
 }
-class TreinAdapterFactory
-{
-    getTreinAdapter(treinNaam: String): ITreinAdapter
-}
 
-interface ITreinAdapter{
+interface TravelAdapter{
    getRoute(): void
 }
 class DirectionsAdapter{
@@ -25,14 +19,14 @@ class DeutscheBahnAdapter{
 
 
 
-TravelController --> TravelService
+
 TravelService --> ITreinAdapter
-TravelService ..> TreinAdapterFactory
+
 DirectionsAdapter..|> ITreinAdapter
 DeutscheBahnAdapter ..|> ITreinAdapter
 TreinAdapterFactory ..> ITreinAdapter
 
-node DeutscheBahnAPI as "DeutscheBahnAPI"{
+node DeutscheBahnAPI as "DeutscheBahnApi"{
    }
 
 node DirectionsApi as "DirectionsApi"{
