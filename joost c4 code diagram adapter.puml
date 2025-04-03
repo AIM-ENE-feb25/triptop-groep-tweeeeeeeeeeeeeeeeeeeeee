@@ -7,7 +7,7 @@ class TravelService{
     getTravelData(locationStart: String, locationEnd: String, travelType: String): void
 }
 
-interface TravelAdapter{
+interface ITravelAdapter{
    getRoute(): void
 }
 class DirectionsAdapter{
@@ -20,11 +20,11 @@ class DeutscheBahnAdapter{
 
 
 
-TravelService --> ITreinAdapter
+TravelService --> ITravelAdapter
 
-DirectionsAdapter..|> ITreinAdapter
-DeutscheBahnAdapter ..|> ITreinAdapter
-TreinAdapterFactory ..> ITreinAdapter
+DirectionsAdapter..|> ITravelAdapter
+DeutscheBahnAdapter ..|> ITravelAdapter
+
 
 node DeutscheBahnAPI as "DeutscheBahnApi"{
    }
