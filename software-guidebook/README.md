@@ -117,6 +117,13 @@ Hieronder staat het componentdiagram van de backend. We hebben gekozen direct de
 > [!IMPORTANT]
 > Voeg toe: Per ontwerpvraag een Class Diagram plus een Sequence Diagram van een aantal scenario's inclusief begeleidende tekst.
 
+
+Ontwerpvraag: Hoe zorg je ervoor dat je makkelijk een nieuwe externe service kan toevoegen?
+
+![Code Diagram stefan](./code_diagram_stefan.svg)
+
+![Code Diagram stefan](./sequence_diagram_stefan.svg)
+
 ## 8. Architectural Decision Records
 
 > [!IMPORTANT]

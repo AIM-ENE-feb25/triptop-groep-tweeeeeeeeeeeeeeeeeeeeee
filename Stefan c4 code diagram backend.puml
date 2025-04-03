@@ -1,6 +1,6 @@
 @startuml
 
-title Code diagram backend externe service Triptop
+title Code Diagram - backend externe service Triptop
 
 class Flight <<record>> {
     -departureTime : DateTime
@@ -9,7 +9,7 @@ class Flight <<record>> {
     +arrivalTime() : DateTime
 }
 
-class Car <<record>> {
+class CarRental <<record>> {
     -brand : String
     +brand() : String
 }
@@ -32,10 +32,10 @@ interface BuildingBlock {
 
 BuildingBlockService --> FlightService
 BuildingBlockService --> CarRentalService
-BuildingBlockService --> Car
+BuildingBlockService --> CarRental
 BuildingBlockService --> Flight
 Flight ..|> BuildingBlock
-Car ..|> BuildingBlock
+CarRental ..|> BuildingBlock
 
 
 node "KLM API" as KLM {
