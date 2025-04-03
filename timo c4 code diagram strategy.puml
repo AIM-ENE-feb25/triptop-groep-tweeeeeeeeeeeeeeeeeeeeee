@@ -1,23 +1,23 @@
 @startuml
 title code diagram for advice strategy
 
-class Advice {
-    + generateStrategy(adviceStrategy)
+class AccommodationService {
+    + generateStrategy(adviceStrategy) : Accommodation[]
 }
 
 class AdviceStrategy {
-    generateStrategy()
+    generateStrategy() : Accommodation[]
 }
 
-class SimpleAdviceStrategy{
-
+class CheapestAdviceStrategy{
+    - getHttpURLConnection() : HttpURLConnection
 }
 
-class AdvancedAdviceStrategy{
-
+class PriciestAdviceStrategy{
+    - getHttpURLConnection() : HttpURLConnection
 }
 
-Advice --> AdviceStrategy
-SimpleAdviceStrategy..|>AdviceStrategy
-AdvancedAdviceStrategy..|>AdviceStrategy
+AccommodationService --> AdviceStrategy
+CheapestAdviceStrategy..|>AdviceStrategy
+PriciestAdviceStrategy..|>AdviceStrategy
 @enduml
