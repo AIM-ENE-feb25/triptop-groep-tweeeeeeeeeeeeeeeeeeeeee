@@ -3,10 +3,10 @@
 title Code Diagram Backend Adapter voor triptop
 
 class TravelController{
-
+    getTravelData(locationStart: String, locationEnd: String, travelType: String): void
 }
 class TravelService{
-    getRoute(treinNaam: String): void
+    getTravelData(locationStart: String, locationEnd: String, travelType: String): void
 }
 class TreinAdapterFactory
 {
@@ -32,10 +32,10 @@ DirectionsAdapter..|> ITreinAdapter
 DeutscheBahnAdapter ..|> ITreinAdapter
 TreinAdapterFactory ..> ITreinAdapter
 
-node DeutscheBahnAPI as "DeutscheBahn"{
+node DeutscheBahnAPI as "DeutscheBahnAPI"{
    }
 
-node DirectionsApi as "Directions"{
+node DirectionsApi as "DirectionsApi"{
    }
 
 DirectionsAdapter -- DirectionsApi

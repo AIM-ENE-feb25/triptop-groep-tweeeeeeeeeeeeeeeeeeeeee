@@ -3,13 +3,11 @@ actor reiziger
 participant "TravelController" as Controller
 participant "TravelService" as Service
 participant "TravelAdapter" as Adapter
-participant "Externe Api's" as API
 
-reiziger -> Controller: getTravelData()
+
+reiziger -> Controller: getTravelData(locationStart, locationEnd, travelType)
 Controller -> Service: getTravelData(locationStart, locationEnd, travelType)
 Service ->  Adapter: getTravelData(locationStart,locationEnd,travelType)
-Adapter -> API : GetRoute(locationStart, locationEnd)
-API --> Adapter: route
 Adapter --> Service: route
 Service --> Controller: route
 Controller --> reiziger: route
