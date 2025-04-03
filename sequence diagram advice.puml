@@ -12,7 +12,9 @@ Reiziger -> controller: getCheapestListings()
 controller -> service: generateAdvice(adviceStrategy)
 service -> CAS: generateAdvice()
 CAS -> CAS: httpURLConnection = getHttpURLConnection()
-CAS -> accommodation: acco = new Accommodation(hotelId, price, currency)
+CAS -> accommodation: accommodation = new Accommodation(hotelId, price, currency)
+CAS -> accommodation: accommodation = new Accommodation(hotelId, price, currency)
+CAS -> accommodation: accommodation = new Accommodation(hotelId, price, currency)
 CAS --> service: accommodations
 service --> controller: accommodations
 controller --> Reiziger: accommodations

@@ -114,31 +114,33 @@ Hieronder staat het componentdiagram van de backend. We hebben gekozen direct de
 
 ###     7.3. Design & Code
 
-> [!IMPORTANT]
-> Voeg toe: Per ontwerpvraag een Class Diagram plus een Sequence Diagram van een aantal scenario's inclusief begeleidende tekst.
-
-
 Ontwerpvraag: Hoe zorg je ervoor dat je makkelijk een nieuwe externe service kan toevoegen?
+
+Hieronder staat het klassendiagram en het sequence diagram voor deze ontwerpvraag. In deze opzet was er geëxperimenteerd met een facade. In dit klassendiagram en sequence diagram is zichtbaar dat een facade niet de complexiteit verminderd, maar juist iets verhoogt. Een controller kan namelijk prima direct `FlightService` en `CarRentalService` aanroepen. De `BuildingBlockService` is dus onnodig en voegt complexiteit toe. Vandaar dat dit niet is toegepast in het prototype.
 
 ![Code Diagram stefan](./code_diagram_stefan.svg)
 
-![Code Diagram stefan](./sequence_diagram_stefan.svg)
-
+![Sequence Diagram stefan](./sequence_diagram_stefan.svg)
 
 Ontwerpvraag: Hoe kunnen we verschillende externe vervoersservices integreren zonder afhankelijk te worden van hun specifieke implementaties?
 
+Hieronder staat het klassendiagram en het sequence diagram voor deze ontwerpvraag. In deze opzet is een adapter pattern geïmplementeerd.
+
 ![Code Diagram joost](./code_diagram_joost.svg)
-![Seqcuence Diagram joost](./sequence_diagram_joost.svg)
+
+![Sequence Diagram joost](./sequence_diagram_joost.svg)
+
+Ontwerpvraag: Hoe ondersteun ik meerdere advies types?
+
+Hieronder staat het klassendiagram en het sequence diagram voor deze ontwerpvraag. In deze opzet is een strategy pattern geïmplementeerd. Bij een `AdviceStrategy` is gekozen om de accomodations samen te voegen in een array en deze array terug te sturen.
+
+![Code Diagram timo](./code_diagram_timo.svg)
+
+![Sequence Diagram timo](./sequence_diagram_timo.svg)
 
 ## 8. Architectural Decision Records
 
-> [!IMPORTANT]
-> Voeg toe: 3 tot 5 ADR's die beslissingen beschrijven die zijn genomen tijdens het ontwerpen en bouwen van de software.
-
 ### 8.1. ADR-001 Database
-
-> [!TIP]
-> These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration". The whole ADR should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
 
 Date: 2025-03-21
 
@@ -160,131 +162,86 @@ We need a database for the Triptop planning application. We expect it to handle 
 | Price              | +              | --                   | -    |
 | Communitiy Support | 0              | ++                   | 0    |
 
-We decided on Microsoft SQL Server. We took into account that the development team has preexisting knowledge of Microsoft SQL Server, thus saving a significant amount of work by choosing it, which makes it very attractive as the development is under tight time constraints
+We decided on Microsoft SQL Server. We took into account that the development team has preexisting knowledge of Microsoft SQL Server, thus saving a significant amount of work by choosing it, which makes it very attractive as the development is under tight time constraints.
 
 ## Consequences
 
 We must use the 'Microsoft SQL Server' SQL language.
 Integration with other Microsoft technologies and tools will be simplified.
-### 8.2. ADR-002 TITLE
 
-> [!TIP]
-> These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration". The whole ADR should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
+### 8.2. ADR-002 Building block pattern
 
-#### Context
+Date: 2025-03-28
 
-> [!TIP]
-> This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts about the problem we're facing and points out factors to take into account or to weigh when making the final decision.
+## Status
 
-#### Considered Options
+Accepted
 
-> [!TIP]
-> This section describes the options that were considered, and gives some indication as to why the chosen option was selected.
+## Context
 
-#### Decision
+We are looking into a structural software engineering pattern for managing building blocks in the backend. Every building block is slightly different and has a different use case. We need something that caters to each building block's needs. It should be in line with our principles, be flexible and contain little duplicate code. The backend also needs to communicate data from building blocks to external api's.
 
-> [!TIP]
-> This section describes our response to the forces/problem. It is stated in full sentences, with active voice. "We will …"
+## Decision
 
-#### Status
+We decided to try the Facade design pattern, mainly because it keeps the code flexible and allows us to add new APIs without breaking existing code. We also considered the Adapter design pattern, but the refactoring.guru site points out that the design pattern Adapter is better suited if we had one building block instead of multiple.
 
-> [!TIP]
-> A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
+However, we decided to not use the Facade design pattern. The prototypes, a class diagram, a sequence diagram and small java application, clearly showed no decrease in complexity by applying the pattern. It actually slightly increased complexity.
 
-#### Consequences
+Due to time constraints the only other alternative is no pattern. Thus we have decided to use no pattern.
 
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
+## Consequences
 
-### 8.3. ADR-003 TITLE
+Code without a pattern could be suboptimal and might not be as easy to understand
 
-> [!TIP]
-> These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration". The whole ADR should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
+### 8.3. ADR-003 Design pattern advice
 
-#### Context
+Date: 2025-03-28
 
-> [!TIP]
-> This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts about the problem we're facing and points out factors to take into account or to weigh when making the final decision.
+## Status
 
-#### Considered Options
+Accepted
 
-> [!TIP]
-> This section describes the options that were considered, and gives some indication as to why the chosen option was selected.
+## Context
 
-#### Decision
+We need to choose a design pattern on how we will implement the delegation of advice strategies. Advice is given to the traveler based upon data received by the api.
 
-> [!TIP]
-> This section describes our response to the forces/problem. It is stated in full sentences, with active voice. "We will …"
+## Alternative
 
-#### Status
+An alternative is not implementing any pattern.
 
-> [!TIP]
-> A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
+## Decision
 
-#### Consequences
+We decided to implement the design pattern strategy. This will allow us to easily switch between the different building blocks. 
+We also made a testing application and that proved that this strategy would be a viable option and according to refactoring.guru this pattern is preferential for this use case. 
+As said in the chapter 6 principles we prefer methods that don't reinvent the wheel, thus another to choose this pattern over no pattern.
 
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
+## Consequences
 
-### 8.4. ADR-004 TITLE
+There are multiple strategies that have one superclass that can be used to call advice from all the children.
 
-> [!TIP]
-> These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration". The whole ADR should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
+### 8.4. ADR-004 Design pattern transport
 
-#### Context
+Date: 2025-03-27
 
-> [!TIP]
-> This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts about the problem we're facing and points out factors to take into account or to weigh when making the final decision.
+## Status
 
-#### Considered Options
+Accepted
 
-> [!TIP]
-> This section describes the options that were considered, and gives some indication as to why the chosen option was selected.
+## Context
 
-#### Decision
+We need to choose a design pattern based on the following question: "Hoe kunnen we verschillende externe vervoersservices (zoals Google Maps of een veerdienst API) integreren zonder afhankelijk te worden van hun specifieke implementaties"
 
-> [!TIP]
-> This section describes our response to the forces/problem. It is stated in full sentences, with active voice. "We will …"
+## Alternatives
 
-#### Status
+We considered the factory pattern and the adapter pattern. These are alternatives, because they are both structral patterns according to refactoring.guru.
 
-> [!TIP]
-> A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
+## Decision
 
-#### Consequences
+We decided to use the adapter pattern. The adapter pattern will allow us to create a concistent interface for interacting with various external services while maintaining flexibility and so reducing direct dependencies. This pattern is highly recommended for this use case according to refectoring.guru. We also made a small application to test the adapter pattern and that proved that this pattern would be a good option to implement. 
 
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
+## Consequences
 
-### 8.5. ADR-005 TITLE
-
-> [!TIP]
-> These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration". The whole ADR should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
-
-#### Context
-
-> [!TIP]
-> This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts about the problem we're facing and points out factors to take into account or to weigh when making the final decision.
-
-#### Considered Options
-
-> [!TIP]
-> This section describes the options that were considered, and gives some indication as to why the chosen option was selected.
-
-#### Decision
-
-> [!TIP]
-> This section describes our response to the forces/problem. It is stated in full sentences, with active voice. "We will …"
-
-#### Status
-
-> [!TIP]
-> A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
-
-#### Consequences
-
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
+We need to introduce an interface that defines the methods required for fetching the data.
 
 ## 9. Deployment, Operation and Support
 

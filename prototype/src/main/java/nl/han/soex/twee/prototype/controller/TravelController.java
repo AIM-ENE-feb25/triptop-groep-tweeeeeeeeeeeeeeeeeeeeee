@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/travel")
 public class TravelController {
 
-
     private TravelService travelService;
 
     @Autowired

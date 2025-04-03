@@ -3,10 +3,12 @@
 title Code Diagram - backend externe service Triptop
 
 class Flight <<record>> {
+    -id : id
     -departureTime : DateTime
     -arrivalTime : DateTime
     +departureTime() : DateTime
     +arrivalTime() : DateTime
+    +id() : id
 }
 
 class CarRental <<record>> {

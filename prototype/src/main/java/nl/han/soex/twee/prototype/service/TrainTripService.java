@@ -16,14 +16,4 @@ public class TrainTripService {
     public List<TrainTrip> getTrainTrips(String fromStation, String toStation) {
         return nsApiClient.getTrainTrips(fromStation, toStation);
     }
-
-
-
-//    zoek codes met stations
-
-
-
-//    zoek routes met code
-
-//    geef top drie 1
 }
