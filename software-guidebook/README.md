@@ -124,6 +124,12 @@ Ontwerpvraag: Hoe zorg je ervoor dat je makkelijk een nieuwe externe service kan
 
 ![Code Diagram stefan](./sequence_diagram_stefan.svg)
 
+
+Ontwerpvraag: Hoe kunnen we verschillende externe vervoersservices integreren zonder afhankelijk te worden van hun specifieke implementaties?
+
+![Code Diagram joost](./code_diagram_joost.svg)
+![Seqcuence Diagram joost](./sequence_diagram_joost.svg)
+
 ## 8. Architectural Decision Records
 
 > [!IMPORTANT]
