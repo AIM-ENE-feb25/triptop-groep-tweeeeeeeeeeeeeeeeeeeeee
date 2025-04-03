@@ -2,11 +2,11 @@
 title code diagram for advice strategy
 
 class AccommodationService {
-    + generateStrategy(adviceStrategy) : Accommodation[]
+    + generateAdvice(adviceStrategy) : Accommodation[]
 }
 
 class AdviceStrategy {
-    generateStrategy() : Accommodation[]
+    generateAdvice() : Accommodation[]
 }
 
 class CheapestAdviceStrategy{
