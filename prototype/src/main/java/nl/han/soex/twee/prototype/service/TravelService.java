@@ -15,8 +15,6 @@ public class TravelService {
     @Qualifier("drivingDirectionAdapter") // first letter cannot be capital
     private ITravelAdapter drivingDirectionAdapter;
 
-
-
     public String getTravelData(String locationStart, String locationEnd, String transportType) throws UnirestException {
         switch (transportType) {
             case "CAR":
@@ -27,6 +25,4 @@ public class TravelService {
                 throw new IllegalArgumentException("Unsupported travel type: " + transportType);
         }
     }
-
-
 }
