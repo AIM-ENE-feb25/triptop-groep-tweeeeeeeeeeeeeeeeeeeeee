@@ -1,0 +1,20 @@
+@startuml
+
+title sequence diagram - backend externe service Triptop
+
+actor Reiziger
+participant "accommodationController : AccommodationController" as controller
+participant "accommodationService : AccommodationService" as service
+participant "cheapestAdviceStrategy: CheapestAdviceStrategy" as CAS
+participant "acco: Accommodation" as accommodation
+
+Reiziger -> controller: getCheapestListings()
+controller -> service: generateAdvice(adviceStrategy)
+service -> CAS: generateAdvice()
+CAS -> CAS: httpURLConnection = getHttpURLConnection()
+CAS -> accommodation: acco = new Accommodation(hotelId, price, currency)
+CAS --> service: accommodations
+service --> controller: accommodations
+controller --> Reiziger: accommodations
+
+@enduml
