@@ -179,7 +179,7 @@ Accepted
 
 ## Context
 
-We are looking into a structural software engineering pattern for managing building blocks in the backend. Every building block is slightly different and has a different use case. We need something that caters to each building block's needs. It should be flexible and contain little duplicate code. The backend also needs to communicate data from building blocks to external api's.
+We are looking into a structural software engineering pattern for managing building blocks in the backend. Every building block is slightly different and has a different use case. We need something that caters to each building block's needs. It should be in line with our principles, be flexible and contain little duplicate code. The backend also needs to communicate data from building blocks to external api's.
 
 ## Decision
 
@@ -213,6 +213,7 @@ An alternative is not implementing any pattern.
 
 We decided to implement the design pattern strategy. This will allow us to easily switch between the different building blocks. 
 We also made a testing application and that proved that this strategy would be a viable option and according to refactoring.guru this pattern is preferential for this use case. 
+As said in the chapter 6 principles we prefer methods that don't reinvent the wheel, thus another to choose this pattern over no pattern.
 
 ## Consequences
 
