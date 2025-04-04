@@ -162,7 +162,7 @@ We need a database for the Triptop planning application. We expect it to handle 
 | Learnability       | 0              | ++                   | 0    |
 | Performance        | +              | ++                   | 0    |
 | Price              | +              | --                   | -    |
-| Communitiy Support | 0              | ++                   | 0    |
+| Community Support  | 0              | ++                   | 0    |
 
 We decided on Microsoft SQL Server. We took into account that the development team has preexisting knowledge of Microsoft SQL Server, thus saving a significant amount of work by choosing it, which makes it very attractive as the development is under tight time constraints.
 
