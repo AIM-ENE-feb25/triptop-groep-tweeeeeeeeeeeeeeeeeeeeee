@@ -5,6 +5,14 @@
 # AH = Arnhem
 # ASD = Amsterdam
 
+GET localhost:8080/accommodation/cheapest
+Accept: application/json
+
+### 
+GET localhost:8080/accommodation/priciest
+Accept: application/json
+
+
 ### GET Request - Get traintrips
 GET localhost:8080/traintrip?fromStation=NM&toStation=KBK
 Accept: application/json
