@@ -243,7 +243,7 @@ We decided to use the adapter pattern. The adapter pattern will allow us to crea
 
 We need to introduce an interface that defines the methods required for fetching the data.
 
-### 8.5. ADR-005 Building block pattern
+### 8.5. ADR-005 api communication
 
 Date: 2025-04-03
 
@@ -253,26 +253,12 @@ Accepted
 
 ## Context
 
-We are looking into a structural software engineering pattern for managing building blocks in the backend. Every building block is slightly different and has a different use case. We need something that caters to each building block's needs. It should be in line with our principles, be flexible and contain little duplicate code. The backend also needs to communicate data from building blocks to external api's.
-
-As mentioned in ADR-002, we decided to not implement 
+We are looking for a way to structure the communication to api's in the backend. We prefer to keep the code for communication seperate from the other business logic.
 
 ## Decision
 
-We decided to try the Facade design pattern, mainly because it keeps the code flexible and allows us to add new APIs without breaking existing code. We also considered the Adapter design pattern, but the refactoring.guru site points out that the design pattern Adapter is better suited if we had one building block instead of multiple.
-
-However, we decided to not use the Facade design pattern. The prototypes, a class diagram, a sequence diagram and small java application, clearly showed no decrease in complexity by applying the pattern. It actually slightly increased complexity.
-
-Due to time constraints the only other alternative is no pattern. Thus we have decided to use no pattern.
-
-
-We decided to use facade
+For this use case we are considering either using a Facade design pattern or no design pattern. We decided to use the Facade design pattern. As it is line with our principles from chapter 6 "Don't reinvent the wheel" and thee seperation between parts of code far outweighs the complexity added by having an extra class.
 
 ## Consequences
 
-Code without a pattern could be suboptimal and might not be as easy to understand
-
-## 9. Deployment, Operation and Support
-
-> [!TIP]
-> Zelf beschrijven van wat je moet doen om de software te installeren en te kunnen runnen.
+We must add a seperate class for api communication.
