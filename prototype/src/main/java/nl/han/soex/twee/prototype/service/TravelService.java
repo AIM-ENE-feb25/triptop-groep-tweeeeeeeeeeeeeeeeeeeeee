@@ -2,7 +2,6 @@ package nl.han.soex.twee.prototype.service;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 import nl.han.soex.twee.prototype.service.Adapter.ITravelAdapter;
-import nl.han.soex.twee.prototype.service.Adapter.TravelAdapterFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
