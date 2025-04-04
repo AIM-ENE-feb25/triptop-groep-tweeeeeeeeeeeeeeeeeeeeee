@@ -1,19 +1,9 @@
-### Train API Examples ###
+### GET Request - Get traintrips
 # Station code reference:
 # NM = Nijmegen
 # KBK = Klarenbeek
 # AH = Arnhem
 # ASD = Amsterdam
-
-GET localhost:8080/accommodation/cheapest
-Accept: application/json
-
-### 
-GET localhost:8080/accommodation/priciest
-Accept: application/json
-
-
-### GET Request - Get traintrips
 GET localhost:8080/traintrip?fromStation=NM&toStation=KBK
 Accept: application/json
 
@@ -49,3 +39,53 @@ Accept: application/json
     "plannedArrivalDateTime": "2025-04-04T12:32:00+02:00"
   }
 ]
+
+### GET Request - Get cheapest accomodations
+GET localhost:8080/accommodation/cheapest
+Accept: application/json
+
+[
+  {
+    "hotelId": 11504860,
+    "price": 36.0186661015787,
+    "currency": "USD"
+  },
+  {
+    "hotelId": 11875904,
+    "price": 36.3215503392511,
+    "currency": "USD"
+  },
+  {
+    "hotelId": 13692695,
+    "price": 36.5320490372473,
+    "currency": "USD"
+  }
+]
+
+### GET Request - Get priciest accomodations
+GET localhost:8080/accommodation/priciest
+Accept: application/json
+
+[
+  {
+    "hotelId": 11321722,
+    "price": 51.5721810090785,
+    "currency": "USD"
+  },
+  {
+    "hotelId": 3157663,
+    "price": 51.4248319204812,
+    "currency": "USD"
+  },
+  {
+    "hotelId": 13781596,
+    "price": 48.9935719586246,
+    "currency": "USD"
+  }
+]
+
+### GET Request - Get car directions
+GET localhost:8080/travel/traveldata?locationStart=Nijmegen&locationEnd=Oosterhout&transportType=CAR
+Accept: application/json
+
+Origin: Nijmegen, Destination: Oosterhout, Distance: 85.2 km, Duration: 1 hr 7 min

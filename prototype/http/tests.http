@@ -1,4 +1,0 @@
-### Test Adapter Car
-    GET http://localhost:8080/travel/traveldata?locationStart=Nijmegen&locationEnd=Oosterhout&transportType=CAR
-### Test Adapter Train
-    GET http://localhost:8080/travel/traveldata?locationStart=Nijmegen&locationEnd=Oosterhout&transportType=TRAIN

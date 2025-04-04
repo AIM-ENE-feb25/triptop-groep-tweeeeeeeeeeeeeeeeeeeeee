@@ -114,9 +114,11 @@ Hieronder staat het componentdiagram van de backend. We hebben gekozen direct de
 
 ###     7.3. Design & Code
 
+Wij hebben er in overleg voor gekozen de ontwerpvragen in een klassendiagram te weergeven i.p.v. een componentdiagram aangezien dit overzichtelijker is.
+
 Ontwerpvraag: Hoe zorg je ervoor dat je makkelijk een nieuwe externe service kan toevoegen?
 
-Hieronder staat het klassendiagram en het sequence diagram voor deze ontwerpvraag. In deze opzet was er geëxperimenteerd met een facade. In dit klassendiagram en sequence diagram is zichtbaar dat een facade niet de complexiteit verminderd, maar juist iets verhoogt. Een controller kan namelijk prima direct `FlightService` en `CarRentalService` aanroepen. De `BuildingBlockService` is dus onnodig en voegt complexiteit toe. Vandaar dat dit niet is toegepast in het prototype.
+Hieronder staat het klassendiagram en het sequence diagram voor deze ontwerpvraag. Dit is een gedeelte van het component bouwsteen service. In deze opzet was er geëxperimenteerd met een facade. In dit klassendiagram en sequence diagram is zichtbaar dat een facade niet de complexiteit verminderd, maar juist iets verhoogt. Een controller kan namelijk prima direct `FlightService` en `CarRentalService` aanroepen. De `BuildingBlockService` is dus onnodig en voegt complexiteit toe. Vandaar dat dit niet is toegepast in het prototype.
 
 ![Code Diagram stefan](./code_diagram_stefan.svg)
 
@@ -124,7 +126,7 @@ Hieronder staat het klassendiagram en het sequence diagram voor deze ontwerpvraa
 
 Ontwerpvraag: Hoe kunnen we verschillende externe vervoersservices integreren zonder afhankelijk te worden van hun specifieke implementaties?
 
-Hieronder staat het klassendiagram en het sequence diagram voor deze ontwerpvraag. In deze opzet is een adapter pattern geïmplementeerd.
+Hieronder staat het klassendiagram en het sequence diagram voor deze ontwerpvraag. Dit is een gedeelte van het component bouwsteen service. In deze opzet is een adapter pattern geïmplementeerd.
 
 ![Code Diagram joost](./code_diagram_joost.svg)
 
@@ -132,7 +134,7 @@ Hieronder staat het klassendiagram en het sequence diagram voor deze ontwerpvraa
 
 Ontwerpvraag: Hoe ondersteun ik meerdere advies types?
 
-Hieronder staat het klassendiagram en het sequence diagram voor deze ontwerpvraag. In deze opzet is een strategy pattern geïmplementeerd. Bij een `AdviceStrategy` is gekozen om de accomodations samen te voegen in een array en deze array terug te sturen.
+Hieronder staat het klassendiagram en het sequence diagram voor deze ontwerpvraag. Dit is een gedeelte van het component bouwsteen service. In deze opzet is een strategy pattern geïmplementeerd. Bij een `AdviceStrategy` is gekozen om de accomodations samen te voegen in een array en deze array terug te sturen.
 
 ![Code Diagram timo](./code_diagram_timo.svg)
 
@@ -257,7 +259,7 @@ We are looking for a way to structure the communication to api's in the backend.
 
 ## Decision
 
-For this use case we are considering either using a Facade design pattern or no design pattern. We decided to use the Facade design pattern. As it is line with our principles from chapter 6 "Don't reinvent the wheel" and thee seperation between parts of code far outweighs the complexity added by having an extra class.
+For this use case we are considering either using a Facade design pattern or no design pattern. We decided to use the Facade design pattern. As it is line with our principles from chapter 6 "Don't reinvent the wheel" and the seperation between parts of code far outweighs the complexity added by having an extra class.
 
 ## Consequences
 
