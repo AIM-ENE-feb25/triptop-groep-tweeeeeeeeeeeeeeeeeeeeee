@@ -11,10 +11,10 @@ interface TravelAdapter{
    getRoute(): void
 }
 class DirectionsAdapter{
- getRoute(): void
+ getRoute(locationStart: String, locationEnd:String): String
 }
 class DeutscheBahnAdapter{
-  getRoute(): void
+   getRoute(locationStart: String, locationEnd:String): String
 }
 
 

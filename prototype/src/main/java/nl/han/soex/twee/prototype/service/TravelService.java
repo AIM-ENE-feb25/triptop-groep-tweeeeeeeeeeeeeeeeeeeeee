@@ -14,12 +14,15 @@ public class TravelService {
     @Qualifier("drivingDirectionAdapter") // first letter cannot be capital
     private ITravelAdapter drivingDirectionAdapter;
 
+    @Autowired
+    @Qualifier("deutscheBahnAdapter")
+    private ITravelAdapter deutscheBahnAdapter;
     public String getTravelData(String locationStart, String locationEnd, String transportType) throws UnirestException {
         switch (transportType) {
             case "CAR":
                 return drivingDirectionAdapter.getRoute(locationStart, locationEnd);
             case "TRAIN":
-               return "Train not yet implemented";
+               return deutscheBahnAdapter.getRoute(locationStart, locationEnd);
                 default:
                 throw new IllegalArgumentException("Unsupported travel type: " + transportType);
         }
